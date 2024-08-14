@@ -1,0 +1,13 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<templates id="template" xml:space="preserve">
+    <t t-inherit="project.ProjectRightSidePanel" t-inherit-mode="extension">
+        <xpath expr="//ProjectRightSidePanelSection[@name=&quot;'milestones'&quot;]" position="after">
+            <div class="d-flex justify-content-center">
+                <button style="display: inline-block; margin:20px; padding: 10px 20px; font-size: 16px; font-weight: bold; text-align: center; color: #fff; background-color: #cf1336; border: none; border-radius: 5px; cursor: pointer; transition: background-color 0.3s, transform 0.2s;"
+                        active_id="state.active_id" type="button" t-on-click="triggerUmlDiagramAction">Show Uml Diagram</button>
+                <button style="display: inline-block; margin:20px; padding: 10px 20px; font-size: 16px; font-weight: bold; text-align: center; color: #fff; background-color: #555555; border: none; border-radius: 5px; cursor: pointer; transition: background-color 0.3s, transform 0.2s;"
+                        active_id="state.active_id" type="button" t-on-click="triggerTimelineDiagramAction">Show Timeline Diagram</button>
+            </div>
+        </xpath>
+    </t>
+</templates>

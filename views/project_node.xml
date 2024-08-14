@@ -1,0 +1,83 @@
+<odoo>
+    <!-- Form View -->
+    <record id="view_project_node_form" model="ir.ui.view">
+        <field name="name">project.node.form</field>
+        <field name="model">project.node</field>
+        <field name="arch" type="xml">
+            <form string="Project Node">
+                <sheet>
+                    <group>
+                        <group>
+                            <field name="active" invisible="1"/>
+                            <field name="name" string="Name"/>
+                            <field name="type" string="Type"/>
+                            <field name="code" string="Short Code"/>
+                            <field name="date" string="Creation Date"/>
+                            <field name="project_id" string="Project"/>
+                            <field name="parent_node" string="Parent Node"/>
+                        </group>
+                        <group>
+                            <field name="global_state" string="Global State"/>
+                            <field name="is_start_node" widget="boolean_toggle" string="Start Node"/>
+                            <field name="is_end_node" widget="boolean_toggle" string="End Node"/>
+                            <field name="is_stage_node" widget="boolean_toggle" string="Stage Node"/>
+                        </group>
+                    </group>
+                </sheet>
+            </form>
+        </field>
+    </record>
+
+    <record id="view_project_node_tree" model="ir.ui.view">
+        <field name="name">project.node.tree</field>
+        <field name="model">project.node</field>
+        <field name="arch" type="xml">
+            <tree string="Project Node">
+                <field name="active" column_invisible="True"/>
+                <field name="name"/>
+                <field name="type" optional="hide"/>
+                <field name="code"/>
+                <field name="project_id" optional="hide"/>
+                <field name="parent_node"/>
+                <field name="date"/>
+                <field name="global_state" string="Global State"/>
+                <field name="is_start_node" optional="hide"/>
+                <field name="is_end_node" optional="hide"/>
+                <field name="is_stage_node" optional="hide"/>
+            </tree>
+        </field>
+    </record>
+
+    <record id="view_project_node_search" model="ir.ui.view">
+        <field name="name">project.node.search</field>
+        <field name="model">project.node</field>
+        <field name="arch" type="xml">
+            <search>
+                <field name="name" string="Name"/>
+                <filter name="archived" string="Archived" domain="[('active', '=', False)]"/>
+                <group name="groupby" string="Group By">
+                    <filter context="{'group_by': 'project_id'}" name="project_id_groupby" string="Project"/>
+                </group>
+            </search>
+        </field>
+    </record>
+
+    <record id="action_diagram_generator" model="ir.actions.act_window">
+        <field name="name">Project Node</field>
+        <field name="res_model">project.node</field>
+        <field name="view_mode">tree,form</field>
+        <field name="search_view_id" ref="view_project_node_search"/>
+        <field name="context">{'search_default_project_id_groupby': 1}</field>
+        <field name="help" type="html">
+            <p class="oe_view_nocontent_create">
+                Click to create a new project node.
+            </p>
+        </field>
+    </record>
+
+    <menuitem id="menu_diagram_generator"
+              name="Project Node"
+              parent="project.menu_project_report"
+              action="action_diagram_generator"
+              sequence="10"/>
+</odoo>

@@ -1,0 +1,14 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+    <record id="action_uml_component" model="ir.actions.client">
+        <field name="name">Uml Diagram</field>
+        <field name="tag">owl.uml_diagram</field>
+        <field name="context">{'active_id':active_id}</field>
+    </record>
+
+    <record id="action_timeline_component" model="ir.actions.client">
+        <field name="name">Timeline Diagram</field>
+        <field name="tag">owl.timeline_diagram</field>
+        <field name="context">{'active_id':active_id}</field>
+    </record>
+</odoo>
